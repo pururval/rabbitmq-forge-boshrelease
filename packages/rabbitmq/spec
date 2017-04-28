@@ -1,0 +1,6 @@
+---
+name: rabbitmq
+dependencies:
+- erlang
+files:
+- rabbitmq/rabbitmq-server-generic-unix-*.tar.xz

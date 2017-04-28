@@ -1,0 +1,31 @@
+#!/bin/bash
+
+set -e # exit immediately if a simple command exits with a non-zero status
+set -u # report the usage of uninitialized variables
+
+# Setup env vars and folders for the webapp_ctl script
+source /var/vcap/jobs/rabbitmq/helpers/ctl_setup.sh 'rabbitmq'
+
+case $1 in
+
+  start)
+    <% if p('management') %>
+      rabbitmq-plugins enable --offline rabbitmq_management >>$LOG_DIR/$JOB_NAME.log
+    <% end %>
+
+    exec chpst -u vcap:vcap rabbitmq-server \
+         >>$LOG_DIR/$JOB_NAME.log 2>&1
+
+    ;;
+
+  stop)
+    rabbitmqctl stop
+
+    ;;
+  *)
+    echo "Usage: rabbitmq_ctl {start|stop}"
+
+    ;;
+
+esac
+exit 0

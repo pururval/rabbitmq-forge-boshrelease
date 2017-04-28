@@ -1,0 +1,47 @@
+---
+name: rabbitmq
+packages:
+- erlang
+- rabbitmq
+
+provides:
+- name: rabbitmq-servers
+  type: rabbitmq-server
+
+consumes:
+- name: rabbitmq-servers
+  type: rabbitmq-server
+
+templates:
+  bin/ctl: bin/ctl
+  bin/monit_debugger: bin/monit_debugger
+  config/rabbitmq.config.erb: config/rabbitmq.config
+  config/erl_inetrc.erb: config/erl_inetrc
+  data/properties.sh.erb: data/properties.sh
+  helpers/ctl_setup.sh: helpers/ctl_setup.sh
+  helpers/ctl_utils.sh: helpers/ctl_utils.sh
+
+properties:
+  management:
+    description: "Install the rabbitmq management portal"
+    default: true
+
+  management_port:
+    description: "Rabbitmq management portal port"
+    default: 15672
+
+  port:
+    description: "Rabbitmq listen port"
+    default: 5672
+
+  erlang_cookie:
+    description: "Rabbitmq cookie for clustering"
+    default: cf-cookie
+
+  default_user:
+    description: "Rabbitmq default username"
+    default: guest
+
+  default_password:
+    description: "Rabbitmq default password"
+    default: guest
