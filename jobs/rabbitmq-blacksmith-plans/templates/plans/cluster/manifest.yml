@@ -1,0 +1,38 @@
+---
+meta:
+  size: default
+  instances: 3
+  username: (( vault $CREDENTIALS "/rabbitmq/system:username" ))
+  password: (( vault $CREDENTIALS "/rabbitmq/system:password" ))
+
+releases:
+  - { name: rabbitmq-forge, version: latest }
+
+stemcells:
+- alias: default
+  os: ubuntu-trusty
+  version: latest
+
+update:
+  canaries: 1
+  max_in_flight: 10
+  canary_watch_time: 1000-30000
+  update_watch_time: 1000-30000
+
+instance_groups:
+  - name: node
+    instances: (( grab meta.instances ))
+    azs: [z1]
+    networks:
+      - name: rabbitmq-service
+    stemcell: default
+
+    vm_type: (( grab meta.size ))
+    persistent_disk_type: default
+
+    jobs:
+      - name:    rabbitmq
+        release: rabbitmq-forge
+        properties:
+          default_user:     (( grab meta.username ))
+          default_password: (( grab meta.password ))

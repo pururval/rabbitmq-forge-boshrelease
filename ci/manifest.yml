@@ -19,6 +19,12 @@ instance_groups:
             limit: 7
             type: standalone
             vm_type: default
+          cluster:
+            name: cluster
+            description: An example cluster
+            limit: 7
+            type: cluster
+            vm_type: default
 
 update:
   canaries: 0

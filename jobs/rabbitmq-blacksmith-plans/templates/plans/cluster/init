@@ -1,0 +1,7 @@
+#!/bin/bash
+set -eu
+
+safe gen $CREDENTIALS/rabbitmq/system username
+safe gen $CREDENTIALS/rabbitmq/system password
+
+exit 0
