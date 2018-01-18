@@ -2,6 +2,8 @@
 meta:
   size: default
   instances: 3
+  default:
+    azs: [z1,z2]
   username: (( vault $CREDENTIALS "/rabbitmq/system:username" ))
   password: (( vault $CREDENTIALS "/rabbitmq/system:password" ))
 
@@ -22,13 +24,11 @@ update:
 instance_groups:
   - name: node
     instances: (( grab meta.instances ))
-    azs: [z1]
-    networks:
-      - name: rabbitmq-service
+    azs: (( grab meta.azs || meta.default.azs ))
+    networks: [name: (( grab meta.net || 'rabbitmq-service' ))
     stemcell: default
 
     vm_type: (( grab meta.size ))
-    persistent_disk_type: default
 
     jobs:
       - name:    rabbitmq
