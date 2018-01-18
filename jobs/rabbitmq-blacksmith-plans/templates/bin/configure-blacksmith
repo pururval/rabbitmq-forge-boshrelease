@@ -40,6 +40,10 @@ meta:
   size: <%= plan["vm_type"] || 'default' %>
   net:  <%= plan["network"] || 'redis-service' %>
 
+<% if plan["instances"] && plan["instances"] > 1 %>
+  instances: <%= plan["instances"] %>
+<% end %>
+
 <% if plan["azs"] %>
   azs: <%= plan["azs"] %>
 <% end %>
