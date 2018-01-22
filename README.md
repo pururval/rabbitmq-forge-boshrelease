@@ -167,6 +167,6 @@ before submitting a PR.
 
 
 
-[1]: https://github.com/blacksmith-community/rabbitmq-forge-boshrelease
+[1]: https://github.com/blacksmith-community/rabbitmq-forge-boshrelease/issues
 [broker]: https://github.com/cloudfoundry-community/blacksmith
 [rabbitmq]:  https://rabbitmq.com
