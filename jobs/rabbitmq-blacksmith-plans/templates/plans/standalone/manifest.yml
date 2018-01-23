@@ -22,7 +22,7 @@ instance_groups:
   - name: standalone
     instances: 1
     azs: [z1]
-    networks: [name: (( grab meta.net || 'rabbitmq-services' ))
+    networks: [name: (( grab meta.net || 'rabbitmq-services' ))]
     stemcell: default
 
     vm_type: (( grab meta.size ))

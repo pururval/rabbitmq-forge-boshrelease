@@ -25,7 +25,7 @@ instance_groups:
   - name: node
     instances: (( grab meta.instances ))
     azs: (( grab meta.azs || meta.default.azs ))
-    networks: [name: (( grab meta.net || 'rabbitmq-service' ))
+    networks: [name: (( grab meta.net || 'rabbitmq-service' ))]
     stemcell: default
 
     vm_type: (( grab meta.size ))
