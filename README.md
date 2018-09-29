@@ -159,6 +159,79 @@ instance_groups:
               vm_type:  very-large
 ```
 
+## Service Credentials
+
+The **standalone topology** returns the following credentials
+structure, for consumption by Cloud Foundry 12-factor
+applications:
+
+```
+{
+  "rmq_port"  :  5672,
+  "mgmt_port" : 15672,
+  "host"      : "10.x.x.x",
+  "username"  : "some-user",
+  "password"  : "sekrit",
+  "uri"       : "amqp://some-user:sekrit@10.x.x.x:5672"
+}
+```
+
+- `rmq_port` - The TCP port that RabbitMQ's AMQP interface is
+  bound to and listening for inbound connections on.
+
+- `mgmt_port` - The TCP port that the RabbitMQ management web
+  interface can be accessed via.
+
+- `host` - The IP address of the standalone RabbitMQ host.
+
+- `username` - The administrator account username.
+
+- `password` - The administrator account password.
+
+- `uri` - An `amqp://...` URL that can be used for accessing
+  RabbitMQ.  It contains all of the other values, in a URL / DSN
+  for easier integration with libraries / SDKs.
+
+The **clustered topology** returns the following credentials
+structure, for consumption by Cloud Foundry 12-factor
+applications:
+
+```
+{
+  "rmq_port"  :   5672,
+  "mgmt_port" :  15672,
+  "hosts"     : ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
+  "username"  :  "some-user",
+  "password"  :  "sekrit",
+  "uri"       :  "amqp://some-user:sekrit@10.x.x.x:5672"
+  "uris"      : ["amqp://some-user:sekrit@10.x.x.x:5672",
+                 "amqp://some-user:sekrit@10.x.x.y:5672",
+                 "amqp://some-user:sekrit@10.x.x.z:5672"]
+}
+```
+
+- `rmq_port` - The TCP port that RabbitMQ's AMQP interface is
+  bound to and listening for inbound connections on.
+
+- `mgmt_port` - The TCP port that the RabbitMQ management web
+  interface can be accessed via.
+
+- `hosts` - A list of the IP addresses of all cluster nodes.
+
+- `username` - The administrator account username.
+
+- `password` - The administrator account password.
+
+- `uri` - An `amqp://...` URL that can be used for accessing
+  the first (arbitrary) cluster node member.  This is provided
+  mainly for backwards compatibility with applications that want
+  to upgrade from the standalone topology, but don't (yet) support
+  multiple RMQ URLs.
+
+- `uris` - A list of `amqp://...` URLs that can be used for
+  accessing each cluster node individually.  Resilient
+  applications should use this list to failover on node failure.
+
 ## Contributing
 
 If you find a bug, please raise a [Github Issue][1] first,
