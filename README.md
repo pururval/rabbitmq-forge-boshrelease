@@ -167,26 +167,27 @@ applications:
 
 ```
 {
-  "host": "10.x.x.x",
-  "hostname": "10.x.x.x",
-  "mgmt_port": 15672,
-  "password": "sekrit",
-  "protocols": {
-   "amqp": {
-    "host": "10.x.x.x",
+  "host"      : "10.x.x.x",
+  "hostname"  : "10.x.x.x",
+  "mgmt_port" : 15672,
+  "password"  : "sekrit",
+  "protocols" : {
+    "amqp"    : {
+    "host"    : "10.x.x.x",
     "password": "sekrit",
-    "port": 5672,
-    "uri": "amqp://some-user:sekrit@10.x.x.x:5672",
+    "port"    : 5672,
+    "uri"     : "amqp://some-user:sekrit@10.x.x.x:5672",
     "username": "some-user"
    }
   },
-  "rmq_port": 5672,
-  "uri": "amqp://some-user:sekrit@10.x.x.x:5672",
-  "username": "some-user"
+  "rmq_port"  : 5672,
+  "uri"       : "amqp://some-user:sekrit@10.x.x.x:5672",
+  "username"  : "some-user"
 }
 
 ```
-- `host/hostname` - The IP address of the standalone RabbitMQ host.
+- `host` - The IP address of the standalone RabbitMQ host. `hostname` and 
+   `host` are interchangeable.
 
 - `mgmt_port` - The TCP port that the RabbitMQ management web
   interface can be accessed via.
@@ -202,9 +203,8 @@ applications:
   RabbitMQ.  It contains all of the other values, in a URL / DSN
   for easier integration with libraries / SDKs.
 
-The section in the protocols block is to also provide Pivatol RabbitMQ equivalent
-credentials formatting to applications. This is in order that applications 
-written to work with Pivotal RabbitMQ may work without changes to the applciations.
+The section in the protocols block is to provide Pivotal RabbitMQ equivalent
+credentials formatting to applications. Please check [Pivotal documentation on RMQ Credentials format](https://docs.pivotal.io/rabbitmq-cf/1-14/reference.html) for more details.
 
 The **clustered topology** returns the following credentials
 structure, for consumption by Cloud Foundry 12-factor
@@ -212,27 +212,27 @@ applications:
 
 ```
 {
-  "hostname": "10.x.x.x",
-  "hostnames": ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
-  "hosts": ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
-  "mgmt_port": 15672,
-  "password": "sekrit",
-  "protocols": {
-   "amqp": {
-    "host": "10.x.x.x",
-    "hosts": ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
-    "password": "sekrit",
-    "port": 5672,
-    "uri": "amqp://some-user:sekrit10.x.x.x:5672",
-    "uris": ["amqp://some-user:sekrit@10.x.x.x:5672",
-             "amqp://some-user:sekrit@10.x.x.y:5672",
-             "amqp://some-user:sekrit@10.x.x.z:5672"]
-    "username": "some-user"
+  "hostname"   : "10.x.x.x",
+  "hostnames"  : ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
+  "hosts"      : ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
+  "mgmt_port"  : 15672,
+  "password"   : "sekrit",
+  "protocols"  : {
+    "amqp"     : {
+    "host"     : "10.x.x.x",
+    "hosts"    : ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
+    "password" : "sekrit",
+    "port"     : 5672,
+    "uri"      : "amqp://some-user:sekrit10.x.x.x:5672",
+    "uris"     : ["amqp://some-user:sekrit@10.x.x.x:5672",
+                  "amqp://some-user:sekrit@10.x.x.y:5672",
+                  "amqp://some-user:sekrit@10.x.x.z:5672"]
+    "username" : "some-user"
    }
   },
-  "rmq_port": 5672,
-  "uri": "amqp://some-user:sekrit10.x.x.x:5672",
-  "username": "some-user"
+  "rmq_port"   : 5672,
+  "uri"        : "amqp://some-user:sekrit10.x.x.x:5672",
+  "username"   : "some-user"
 }
 ```
 
@@ -242,7 +242,8 @@ applications:
 - `mgmt_port` - The TCP port that the RabbitMQ management web
   interface can be accessed via.
 
-- `hosts` - A list of the IP addresses of all cluster nodes.
+- `hosts` - A list of the IP addresses of all cluster nodes. `hostnames` and 
+   `hosts` are interchangeable.
 
 - `username` - The administrator account username.
 
@@ -259,9 +260,8 @@ applications:
   applications should use this list to failover on node failure.
 
 
-The section in the protocols block is to also provide Pivatol RabbitMQ equivalent
-credentials formatting to applications. This is in order that applications 
-written to work with Pivotal RabbitMQ may work without changes to the applciations.
+The section in the protocols block is to provide Pivotal RabbitMQ equivalent
+credentials formatting to applications. Please check [Pivotal documentation on RMQ Credentials format](https://docs.pivotal.io/rabbitmq-cf/1-14/reference.html) for more details.
 
 ## Contributing
 
