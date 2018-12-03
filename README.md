@@ -167,22 +167,32 @@ applications:
 
 ```
 {
-  "rmq_port"  :  5672,
-  "mgmt_port" : 15672,
-  "host"      : "10.x.x.x",
-  "username"  : "some-user",
-  "password"  : "sekrit",
-  "uri"       : "amqp://some-user:sekrit@10.x.x.x:5672"
+  "host": "10.x.x.x",
+  "hostname": "10.x.x.x",
+  "mgmt_port": 15672,
+  "password": "sekrit",
+  "protocols": {
+   "amqp": {
+    "host": "10.x.x.x",
+    "password": "sekrit",
+    "port": 5672,
+    "uri": "amqp://some-user:sekrit@10.x.x.x:5672",
+    "username": "some-user"
+   }
+  },
+  "rmq_port": 5672,
+  "uri": "amqp://some-user:sekrit@10.x.x.x:5672",
+  "username": "some-user"
 }
-```
 
-- `rmq_port` - The TCP port that RabbitMQ's AMQP interface is
-  bound to and listening for inbound connections on.
+```
+- `host/hostname` - The IP address of the standalone RabbitMQ host.
 
 - `mgmt_port` - The TCP port that the RabbitMQ management web
   interface can be accessed via.
 
-- `host` - The IP address of the standalone RabbitMQ host.
+- `rmq_port` - The TCP port that RabbitMQ's AMQP interface is
+  bound to and listening for inbound connections on.
 
 - `username` - The administrator account username.
 
@@ -192,21 +202,37 @@ applications:
   RabbitMQ.  It contains all of the other values, in a URL / DSN
   for easier integration with libraries / SDKs.
 
+The section in the protocols block is to also provide Pivatol RabbitMQ equivalent
+credentials formatting to applications. This is in order that applications 
+written to work with Pivotal RabbitMQ may work without changes to the applciations.
+
 The **clustered topology** returns the following credentials
 structure, for consumption by Cloud Foundry 12-factor
 applications:
 
 ```
 {
-  "rmq_port"  :   5672,
-  "mgmt_port" :  15672,
-  "hosts"     : ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
-  "username"  :  "some-user",
-  "password"  :  "sekrit",
-  "uri"       :  "amqp://some-user:sekrit@10.x.x.x:5672"
-  "uris"      : ["amqp://some-user:sekrit@10.x.x.x:5672",
-                 "amqp://some-user:sekrit@10.x.x.y:5672",
-                 "amqp://some-user:sekrit@10.x.x.z:5672"]
+  "hostname": "10.x.x.x",
+  "hostnames": ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
+  "hosts": ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
+  "mgmt_port": 15672,
+  "password": "sekrit",
+  "protocols": {
+   "amqp": {
+    "host": "10.x.x.x",
+    "hosts": ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
+    "password": "sekrit",
+    "port": 5672,
+    "uri": "amqp://some-user:sekrit10.x.x.x:5672",
+    "uris": ["amqp://some-user:sekrit@10.x.x.x:5672",
+             "amqp://some-user:sekrit@10.x.x.y:5672",
+             "amqp://some-user:sekrit@10.x.x.z:5672"]
+    "username": "some-user"
+   }
+  },
+  "rmq_port": 5672,
+  "uri": "amqp://some-user:sekrit10.x.x.x:5672",
+  "username": "some-user"
 }
 ```
 
@@ -231,6 +257,11 @@ applications:
 - `uris` - A list of `amqp://...` URLs that can be used for
   accessing each cluster node individually.  Resilient
   applications should use this list to failover on node failure.
+
+
+The section in the protocols block is to also provide Pivatol RabbitMQ equivalent
+credentials formatting to applications. This is in order that applications 
+written to work with Pivotal RabbitMQ may work without changes to the applciations.
 
 ## Contributing
 
