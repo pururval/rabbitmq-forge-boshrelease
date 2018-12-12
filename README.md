@@ -167,27 +167,43 @@ applications:
 
 ```
 {
-  "host"      : "10.x.x.x",
-  "hostname"  : "10.x.x.x",
-  "mgmt_port" : 15672,
-  "password"  : "sekrit",
-  "protocols" : {
-    "amqp"    : {
-    "host"    : "10.x.x.x",
-    "password": "sekrit",
-    "port"    : 5672,
-    "uri"     : "amqp://some-user:sekrit@10.x.x.x:5672",
-    "username": "some-user"
+  "dashboard_url" : "http://10.x.x.x:15672/#/login/username/sekrit",
+  "host"          : "10.x.x.x",
+  "hostname"      : "10.x.x.x",
+  "mgmt_port"     : 15672,
+  "password"      : "sekrit",
+  "protocols"     : {
+    "amqp"        : {
+    "host"        : "10.x.x.x",
+    "password"    : "sekrit",
+    "port"        : 5672,
+    "uri"         : "amqp://some-user:sekrit@10.x.x.x:5672",
+    "username"    : "some-user",
+    "vhost"       : "/"
+   },
+    "management": {
+    "host"        : "10.x.x.x",
+    "password"    : "sekrit",
+    "path"        : "/api",
+    "port"        : 15672,
+    "ssl"         : false,
+    "uri"         : "http://some-user:sekrit@10.x.x.x:15672/api",
+    "username"    : "some-user"
    }
   },
-  "rmq_port"  : 5672,
-  "uri"       : "amqp://some-user:sekrit@10.x.x.x:5672",
-  "username"  : "some-user"
+  "rmq_port"      : 5672,
+  "uri"           : "amqp://some-user:sekrit@10.x.x.x:5672",
+  "username"      : "some-user",
+  "vhost"         : "/"
 }
 
 ```
+- `dashboard_url` - The URL to access the RabbitMQ management GUI.
+
 - `host` - The IP address of the standalone RabbitMQ host. `hostname` and 
    `host` are interchangeable.
+
+- `vhost` - The name of the virtual host that the user's permissions apply to.
 
 - `mgmt_port` - The TCP port that the RabbitMQ management web
   interface can be accessed via.
@@ -212,29 +228,45 @@ applications:
 
 ```
 {
-  "hostname"   : "10.x.x.x",
-  "hostnames"  : ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
-  "hosts"      : ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
-  "mgmt_port"  : 15672,
-  "password"   : "sekrit",
-  "protocols"  : {
-    "amqp"     : {
-    "host"     : "10.x.x.x",
-    "hosts"    : ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
-    "password" : "sekrit",
-    "port"     : 5672,
-    "uri"      : "amqp://some-user:sekrit10.x.x.x:5672",
-    "uris"     : ["amqp://some-user:sekrit@10.x.x.x:5672",
-                  "amqp://some-user:sekrit@10.x.x.y:5672",
-                  "amqp://some-user:sekrit@10.x.x.z:5672"]
-    "username" : "some-user"
+  "dashboard_url" : "http://10.x.x.x:15672/#/login/username/sekrit",
+  "hostname"      : "10.x.x.x",
+  "hostnames"     : ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
+  "hosts"         : ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
+  "mgmt_port"     : 15672,
+  "password"      : "sekrit",
+  "protocols"     : {
+    "amqp"        : {
+    "host"        : "10.x.x.x",
+    "hosts"       : ["10.x.x.x", "10.x.x.y", "10.x.x.z"],
+    "password"    : "sekrit",
+    "port"        : 5672,
+    "uri"         : "amqp://some-user:sekrit10.x.x.x:5672",
+    "uris"        : ["amqp://some-user:sekrit@10.x.x.x:5672",
+                     "amqp://some-user:sekrit@10.x.x.y:5672",
+                     "amqp://some-user:sekrit@10.x.x.z:5672"]
+    "username"    : "some-user",
+    "vhost"       : "/"
+   },
+    "management": {
+    "host"        : "10.x.x.x",
+    "password"    : "sekrit",
+    "path"        : "/api",
+    "port"        : 15672,
+    "ssl"         : false,
+    "uri"         : "http://some-user:sekrit@10.x.x.x:15672/api",
+    "uris"        : ["http://some-user:sekrit@10.x.x.x:15672/api",
+                     "http://some-user:sekrit@10.x.x.y:15672/api",
+                     "http://some-user:sekrit@10.x.x.z:15672/api"]
+    "username"    : "some-user"
    }
   },
-  "rmq_port"   : 5672,
-  "uri"        : "amqp://some-user:sekrit10.x.x.x:5672",
-  "username"   : "some-user"
+  "rmq_port"      : 5672,
+  "uri"           : "amqp://some-user:sekrit10.x.x.x:5672",
+  "username"      : "some-user",
+   "vhost"        : "/"
 }
 ```
+- `dashboard_url` - The URL to access the RabbitMQ management GUI.
 
 - `rmq_port` - The TCP port that RabbitMQ's AMQP interface is
   bound to and listening for inbound connections on.
@@ -244,6 +276,8 @@ applications:
 
 - `hosts` - A list of the IP addresses of all cluster nodes. `hostnames` and 
    `hosts` are interchangeable.
+
+- `vhost` - The name of the virtual host that the user's permissions apply to.
 
 - `username` - The administrator account username.
 
