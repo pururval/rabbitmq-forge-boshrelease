@@ -1,6 +1,6 @@
 set -ex
 
-VERSION=3.6.9
+VERSION=3.7.23
 
 tar -xf $BOSH_COMPILE_TARGET/rabbitmq/rabbitmq-server-generic-unix-${VERSION}.tar.xz
 mv rabbitmq_server-${VERSION}/* $BOSH_INSTALL_TARGET
