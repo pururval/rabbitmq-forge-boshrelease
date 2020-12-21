@@ -1,6 +1,6 @@
 set -ex
 
-VERSION=21.3
+VERSION=22.3
 CPUS=$(grep -c ^processor /proc/cpuinfo)
 
 tar xfv erlang/otp_src_${VERSION}.tar.gz
