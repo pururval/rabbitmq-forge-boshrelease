@@ -30,6 +30,6 @@ meta:
     access_token: ((starkandwayne-bot-github.access-token))
 
   shout:
-    url:      ((shour.url))
+    url:      ((shout.url))
     username: ((shout.username))
     password: ((shout.password))
