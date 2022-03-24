@@ -2,7 +2,7 @@ erlang/otp_src_23.3.4.9.tar.gz:
   size: 99280005
   object_id: 41803acc-0044-44b7-6b7b-b37c44ab84d3
   sha: sha256:2a2a6538c25736bda659af647ea2aac10eeeabc26c889e051487507045a24581
-rabbitmq/rabbitmq-server-generic-unix-3.8.26.tar.xz:
-  size: 15706284
-  object_id: 4027d420-1ee2-4f72-698d-ea579928728a
-  sha: sha256:97531cf44962b6ce61a72acf76ddf6bca498cea45ac22f03ebfaf78febf6e6a3
+rabbitmq/rabbitmq-server-generic-unix-3.8.28.tar.xz:
+  size: 15733580
+  object_id: 6ab35d53-1c21-419b-5d5f-7f07b77513c4
+  sha: sha256:3beff71ca211be0ee4042b31807d13f299a5a4a1ea6ca023d3808b8aad02c743
