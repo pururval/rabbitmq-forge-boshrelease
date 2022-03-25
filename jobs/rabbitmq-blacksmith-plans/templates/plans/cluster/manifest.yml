@@ -36,3 +36,7 @@ instance_groups:
         properties:
           default_user:     (( grab meta.username ))
           default_password: (( grab meta.password ))
+        provides:
+          rabbitmq-servers: { as: rabbitmq-servers,   ip_addresses: true }
+        consumes:
+          rabbitmq-servers: { from: rabbitmq-servers, ip_addresses: true }
